@@ -31,11 +31,15 @@ const TicketsScreen = () => {
   }
 
 
-    return (<View>
+    return (<View
+    style={{
+      flex:1
+    }}>
          <View
         style={{
           padding: 10,
-          margin: 10,
+          marginTop: "15%",
+          marginHorizontal:"5%",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",

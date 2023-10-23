@@ -24,12 +24,12 @@ import {
   import { SlideAnimation } from "react-native-modals";
   import { ModalContent } from "react-native-modals";
 
-
   import {API, graphqlOperation} from 'aws-amplify';
 import { createTicket, updateProducto } from './src/graphql/mutations';
 import { getProducto } from "./src/graphql/queries";
 import { Amplify } from 'aws-amplify';
 import awsExports from './src/aws-exports';
+import COLORS from '../screens/styles/Constants'
 Amplify.configure(awsExports);
 
 
@@ -116,14 +116,23 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
         title: "Frutería Macías",
         headerTitleStyle: {
           fontSize: 20,
+          fontFamily:"sans-serif",
           fontWeight: "bold",
           color: "white",
         },
         headerStyle: {
-          backgroundColor: "#6c1c11",
+          backgroundColor: "#8AA39B",
           height: 110,
           borderBottomColor: "transparent",
-          shadowColor: "transparent",
+          shadowColor: "#000",
+          shadowOffset: {
+          	width: 0,
+          	height: 3,
+          },
+          shadowOpacity: 0.27,
+          shadowRadius: 4.65,
+        
+          elevation: 6,
         },
         
       });
@@ -136,33 +145,28 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
     return (
       <>
         <View style={{
-          backgroundColor: "#fff"
-
-
+          backgroundColor: "#fff",
+          flex:1,
+          
         }}>
          
   
-          <ScrollView>
+          <ScrollView >
             <View
               style={{
-                margin: 20,
-                borderColor: "#f4b228",
+                margin: "5%",
+                borderColor: "transparent",
                 borderWidth: 3,
-                borderRadius: 6,
+                borderRadius: 3,
+                display:"flex",
+                gap:10
+                
               }}
             >
-              
+              <View style={styles.shadowProp}>
               <Pressable
+                style={styles.inputCard}
                 
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 10,
-                  borderColor: "#f4b228",
-                  borderWidth: 2,
-                  paddingVertical: 15,
-                }}
               >
                <Ionicons name="person-outline" size={24} color="black" />
                 <TextInput
@@ -174,18 +178,10 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
                   }
                 />
               </Pressable>
-
+              </View>
               <Pressable
                 
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 10,
-                  borderColor: "#f4b228",
-                  borderWidth: 2,
-                  paddingVertical: 15,
-                }}
+                style={styles.inputCard}
               >
                <MaterialIcons name="format-list-numbered" size={24} color="black" />
                 <TextInput
@@ -203,15 +199,7 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
   
               <Pressable
                 onPress={() => setModalVisibile(!modalVisibile)}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 10,
-                  borderColor: "#f4b228",
-                  borderWidth: 2,
-                  paddingVertical: 15,
-                }}
+                style={styles.inputCard}
               >
                 <MaterialCommunityIcons name="fruit-cherries" size={24} color="black" />
                 <Text>
@@ -228,15 +216,7 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
 
               <Pressable
                 
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 10,
-                  borderColor: "#f4b228",
-                  borderWidth: 2,
-                  paddingVertical: 15,
-                }}
+                style={styles.inputCard}
               >
                 <FontAwesome name="money" size={24} color="black" />
                 <Text onChangeText={(value) => setInput('total', value)}>
@@ -246,13 +226,14 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
               </Pressable>
               <Pressable
                 onPress={addTicket}
-                style={{
+                style={[{
                   paddingHorizontal: 10,
-                  borderColor: "#f4b228",
+                  borderColor:"transparent",
+                  paddingHorizontal: 10,
                   borderWidth: 2,
                   paddingVertical: 15,
                   backgroundColor: "#4a6bb4",
-                }}
+                }, styles.rounded]}
               >
                 <Text
                   style={{
@@ -328,15 +309,7 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
               </Text>
               <Pressable
                 
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 10,
-                  borderColor: "#f4b228",
-                  borderWidth: 2,
-                  paddingVertical: 15,
-                }}
+                style={styles.inputCard}
               >
                <MaterialIcons name="description" size={24} color="black" />
                 <TextInput
@@ -350,15 +323,7 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
               </Pressable>
               <Pressable
                 
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 10,
-                  borderColor: "#f4b228",
-                  borderWidth: 2,
-                  paddingVertical: 15,
-                }}
+                style={[styles.inputCard]}
               >
                <Ionicons name="pricetag" size={24} color="black" />
                 <TextInput
@@ -460,6 +425,31 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
       alignSelf: 'center',
       backgroundColor: 'black',
       paddingHorizontal: 8,
+    },
+    rounded:{
+      borderRadius:50
+    },
+    shadowProp: {
+      shadowColor: "#000",
+      shadowOffset: {
+      	width: 0,
+      	height: 3,
+      },
+      shadowOpacity: 0.27,
+      shadowRadius: 4.65,
+
+      elevation: 6,
+    },
+    inputCard: {
+      borderRadius:10,
+      borderColor:COLORS.feldgrau,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
+      paddingHorizontal: 10,
+      borderWidth: 2,
+      paddingVertical: 15,
+      margin:8
     },
     buttonText: {color: 'white', padding: 16, fontSize: 18},
   });
