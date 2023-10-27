@@ -146,7 +146,7 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
             <View
               style={{
                 margin: 20,
-                borderColor: "#f4b228",
+                borderColor: "#fff",
                 borderWidth: 3,
                 borderRadius: 6,
               }}

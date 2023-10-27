@@ -80,6 +80,7 @@ const AlmacenScreen = () => {
                     backgroundColor: "#E0E0E0",
                   }}
                 >
+
                   <Text
                     style={{
                       textAlign: "center",
