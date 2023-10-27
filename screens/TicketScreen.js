@@ -154,8 +154,13 @@ const initialState = {name: '', number: 0, price: 0, amount: 0, total: 0, descri
           <ScrollView >
             <View
               style={{
+<<<<<<< HEAD
                 margin: "5%",
                 borderColor: "transparent",
+=======
+                margin: 20,
+                borderColor: "#fff",
+>>>>>>> 2c90497 (Se cambio el estilo)
                 borderWidth: 3,
                 borderRadius: 3,
                 display:"flex",
